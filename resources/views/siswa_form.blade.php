@@ -9,37 +9,54 @@
 <body>
     <div class="container mt-4">
         <h2 class="mb-4">Tambah Siswa</h2>
-        <form method="POST" action="">
+
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <b>{{ $error }}</b>
+            @endforeach
+        @endif
+
+        @if (isset($siswa))
+            <form method="post" action="/siswa/update">
+            @method('PUT')
+        @else
+        <form method="POST" action="/siswa">
+        @endif
+             @csrf
+             @if (isset($siswa))
+            <input type="text" name="id" value="{{ $siswa->id}}" hidden>
+            @endif
             <div class="mb-3">
                 <label for="nis" class="form-label">NIS</label>
-                <input type="text" class="form-control" id="nis" name="nis" required>
+                <input type="text" name="nis" class="form-control" value= "{{ old('name', $siswa->nis ?? '') }}" required>
             </div>
             <div class="mb-3">
                 <label for="nama_siswa" class="form-label">Nama Siswa</label>
-                <input type="text" class="form-control" id="nama_siswa" name="nama_siswa" required>
+                <input type="text" name="nama_siswa" class="form-control" value= "{{ old('name', $siswa->nama_siswa ?? '') }}" required>
             </div>
             <div class="mb-3">
                 <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                <select class="form-select" id="jenis_kelamin" name="jenis_kelamin" required>
+                <select class="form-select" name="jenis_kelamin" name="jenis_kelamin" required>
                     <option value="">Pilih Jenis Kelamin</option>
-                    <option value="L">Laki-laki</option>
-                    <option value="P">Perempuan</option>
+                    <option value="L" {{ old('jenis_kelamin', $siswa->jenis_kelamin ?? '') == 'L' ? 'selected' : '' }}>Laki-laki</option>
+                    <option value="P" {{ old('jenis_kelamin', $siswa->jenis_kelamin ?? '') == 'P' ? 'selected' : '' }}>Perempuan</option>
+
                 </select>
             </div>
             <div class="mb-3">
                 <label for="tempat_lahir" class="form-label">Tempat Lahir</label>
-                <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" required>
+                <input type="text" name="tempat_lahir" class="form-control" value= "{{ old('name', $siswa->tempat_lahir ?? '') }}" required>
             </div>
             <div class="mb-3">
                 <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
-                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" required>
+                <input type="date" name="tanggal_lahir"  class="form-control"value= "{{ old('name', $siswa->tanggal_lahir ?? '') }}" required>
             </div>
             <div class="mb-3">
                 <label for="id_kelas" class="form-label">Kelas</label>
                 <select class="form-select" id="id_kelas" name="id_kelas" required>
                     <option value="">Pilih Kelas</option>
                     @foreach ($kelas as $k)
-                        <option value="{{ $k->id}}">{{ $k->nama_kelas }}</option>
+                    <option value="{{ $k->id }}" {{ old('id_kelas', $siswa->id_kelas ?? '') == $k->id ? 'selected' : '' }}>{{ $k->nama_kelas }}</option>
                     @endforeach
                 </select>
             </div>
@@ -48,12 +65,12 @@
                 <select class="form-select" id="id_wali" name="id_wali" required>
                 <option value="">Pilih Wali Murid</option>
                    @foreach ($wali as $w)
-                        <option value="{{ $w->id }}">{{ $w->nama_wali}}</option>
+                   <option value="{{ $w->id }}" {{ old('id_wali', $siswa->id_wali ?? '') == $w->id ? 'selected' : '' }}>{{ $w->nama_wali }}</option>
                     @endforeach
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Simpan</button>
-            <a href="index.php" class="btn btn-secondary">Kembali</a>
+            <a href="{{ route('siswa.index') }}" class="btn btn-secondary">Kembali</a>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
