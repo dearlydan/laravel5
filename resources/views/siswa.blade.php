@@ -11,8 +11,8 @@
         <h2 class="mb-3">Data Siswa</h2>
         <div class="d-flex justify-content-between mb-3">
             <div>
-                <a href="kelas.php" class="btn btn-primary">Kelola Kelas</a>
-                <a href="wali_murid.php" class="btn btn-primary">Kelola Wali Murid</a>
+                <a href="{{ route('kelas.index') }}" class="btn btn-primary">Kelola Kelas</a>
+                <a href="{{ route('wali.index') }}" class="btn btn-primary">Kelola Wali Murid</a>
             </div>
             <a href="/siswa/create" class="btn btn-success">Tambah Siswa</a>
 

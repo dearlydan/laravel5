@@ -14,5 +14,14 @@ Route::get('/siswa/edit/{id}', [SiswaController::class, 'edit'])->name('siswa.ed
 Route::put('/siswa/update', [SiswaController::class, 'update'])->name('siswa.update');
 
 
-Route::get('/wali-murid', [WaliMuridController::class, 'index'])->name('wali.index');
+
+Route::get('/wali_murid', [WaliMuridController::class, 'index'])->name('wali.index');
+Route::get('/wali_murid/create', [WaliMuridController::class, 'create'])->name('wali.create');
+Route::post('/wali_murid', [WaliMuridController::class, 'store'])->name('wali.store');
+Route::get('/wali_murid/edit/{id}', [WaliMuridController::class, 'edit'])->name('wali.edit');
+Route::put('/wali_murid/update/{id}', [WaliMuridController::class, 'update'])->name('wali.update');
+Route::delete('/wali_murid/destroy/{id}', [WaliMuridController::class, 'destroy'])->name('wali.destroy');
+
+
+
 Route::get('/kelas', [KelasController::class, 'index'])->name('kelas.index');
