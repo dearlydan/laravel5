@@ -9,9 +9,16 @@
 <body>
 <div class="container mt-4">
     <h2>Data Wali Murid</h2>
-        <a href="{{ route('wali.create') }}" class="btn btn-success mb-3">Tambah Wali Murid</a>
+    <div class="d-flex justify-content-between mb-3">
+            <div>
+                <a href="{{ route('siswa.index') }}" class="btn btn-primary">Kelola Siswa</a>
+                <a href="{{ route('kelas.index') }}" class="btn btn-primary">Kelola Kelas</a>
+            </div>
+            <a href="/wali_murid/create" class="btn btn-success">Tambah Wali</a>
+
+        </div>
         <table class="table table-bordered">
-            <thead>
+            <thead class="table-dark"> 
                 <tr>
                     <th>Nama Wali</th>
                     <th>No Telepon</th>

@@ -17,7 +17,7 @@ class WaliMuridController extends Controller
 
     public function create()
     {
-        return view('wali_murid_form.create');
+        return view('wali_murid_form');
     }
 
     public function store(Request $request)
@@ -38,8 +38,10 @@ class WaliMuridController extends Controller
     public function edit($id)
     {
         $wali_murid = DB::table('wali_murids')->where('id', $id)->first();
-        return view('wali_murid.edit', compact('wali_murid'));
+    
+        return view('wali_murid_form', compact('wali_murid'));
     }
+    
 
     public function update(Request $request, $id)
     {
